@@ -1,0 +1,42 @@
+# Activeer mod_rewrite
+RewriteEngine On
+
+# 1. Forceer HTTPS + WWW
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\.loodgietersbedrijfparaat\.nl [NC]
+RewriteRule ^(.*)$ https://www.loodgietersbedrijfparaat.nl/$1 [L,R=301]
+
+# 2. Mooie URLs -> verwijzen naar .php-bestanden
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# 3. Custom 404 fallback (ook als bestand of map niet bestaat)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /404.php [L]
+
+# 4. ErrorDocument fallback
+ErrorDocument 404 /404.php
+
+# 5. Bots blokkeren (geven 403 terug)
+SetEnvIfNoCase User-Agent "AhrefsBot" bad_bot
+SetEnvIfNoCase User-Agent "MJ12bot" bad_bot
+SetEnvIfNoCase User-Agent "SemrushBot" bad_bot
+SetEnvIfNoCase User-Agent "DotBot" bad_bot
+
+<Limit GET POST HEAD>
+  Order Allow,Deny
+  Allow from all
+  Deny from env=bad_bot
+</Limit>
+
+# 6. Security headers voor extra bescherming
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>

@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.loodgietersbedrijfparaat.nl/sitemap.xml
+
+# Disallow admin/private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /*.log$
+
+# Allow important files
+Allow: /style.css
+Allow: /script.js
+Allow: /images/
+Allow: /partials/
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
+
+# Block specific bots (optional)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10

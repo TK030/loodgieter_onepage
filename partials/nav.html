@@ -1,0 +1,78 @@
+<header>
+    <!-- Desktop navigatie -->
+    <nav class="navbar" aria-label="Hoofdnavigatie">
+        <div class="nav-logo">
+            <a href="./index.php#hero" aria-label="Ga naar de homepage">
+                <img src="images/loodgietersbedrijfParaat_logo.png" alt="Loodgieter Paraat logo">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="./index.php#hero">Home</a></li>
+            <li class="dropdown">
+                <a href="./index.php#diensten">Diensten</a>
+                <ul class="dropdown-menu">
+                    <li><a href="werkzaamheden/waterleidingen.php">Waterleidingen</a></li>
+                    <li><a href="werkzaamheden/sanitair-en-badkamer.php">Sanitair & Badkamer</a></li>
+                    <li><a href="werkzaamheden/verwarmingsinstallatie.php">Verwarmingsinstallatie</a></li>
+                    <li><a href="werkzaamheden/riolering-en-afvoer.php">Riolering & Afvoer</a></li>
+                    <li><a href="werkzaamheden/spoeddienst.php">Spoeddienst / 24/7</a></li>
+                </ul>
+            </li>
+            <li><a href="./index.php#over">Over ons</a></li>
+            <li><a href="./blog.php">Blog</a></li>
+            <li><a href="./projecten.php">Projecten</a></li>
+            <li><a href="./index.php#contact">Contact</a></li>
+            <li>
+                <a href="tel:0612345678" class="cta-btn cta-call" aria-label="Bel direct met Loodgieter Paraat">
+                    <span class="cta-icon">
+                        <!-- SVG hier -->
+                    </span>
+                    06-12345678
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Navigation (alleen zichtbaar op mobiel) -->
+    <nav class="mobile-Nav">
+        <a href="./index.php#hero" class="opennavLogo" aria-label="Ga naar de homepage">
+            <img src="images/loodgietersbedrijfParaat_logo.png" alt="Loodgieter Paraat logo">
+        </a>
+        <button class="hamburger" type="button" aria-label="Menu openen">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </nav>
+
+    <!-- Overlay en Hamburger Menu -->
+    <div class="menu-overlay"></div>
+    <div class="hamburgerMenu">
+        <button class="close-btn" type="button" aria-label="Menu sluiten">&times;</button>
+        <a href="./index.php#hero" class="navLogo" aria-label="Ga naar de homepage">
+            <img src="images/loodgietersbedrijfParaat_logo.png" alt="Loodgieter Paraat logo">
+        </a>
+        <ul class="mobileNavLinks">
+            <li class="mobileNavItem"><a href="./index.php#hero">Home</a></li>
+            <li class="mobileNavItem dropdown">
+                <a href="#" class="dropdown-toggle">Diensten</a>
+                <ul class="dropdown-menu">
+                    <li><a href="werkzaamheden/waterleidingen.php">Waterleidingen</a></li>
+                    <li><a href="werkzaamheden/sanitair-en-badkamer.php">Sanitair & Badkamer</a></li>
+                    <li><a href="werkzaamheden/verwarmingsinstallatie.php">Verwarmingsinstallatie</a></li>
+                    <li><a href="werkzaamheden/riolering-en-afvoer.php">Riolering & Afvoer</a></li>
+                    <li><a href="werkzaamheden/spoeddienst.php">Spoeddienst / 24/7</a></li>
+                </ul>
+            </li>
+            <li class="mobileNavItem"><a href="./index.php#over">Over ons</a></li>
+            <li class="mobileNavItem"><a href="./blog.php">Blog</a></li>
+            <li class="mobileNavItem"><a href="./projecten.php">Projecten</a></li>
+            <li class="mobileNavItem"><a href="./index.php#contact">Contact</a></li>
+        </ul>
+        <div class="social-buttons">
+            <a href="#" aria-label="Facebook"><img src="images/facebook.svg" alt="Facebook" width="32"></a>
+            <a href="#" aria-label="Instagram"><img src="images/instagram.svg" alt="Instagram" width="32"></a>
+        </div>
+        <a href="tel:0612345678" class="cta-button">Bel nu voor spoedklus!</a>
+    </div>
+</header>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bedankt!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../images/loodgietersbedrijfParaatAchtergrond_logo.png" type="image/png">
+    <style>
+        body {
+            background: #f8f9fa;
+            color: #1f4b6e;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bedankt-container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(31, 75, 110, 0.10);
+            padding: 3rem 2rem 2.5rem 2rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .bedankt-container h1 {
+            color: #ee9a3a;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .bedankt-container p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+        }
+
+        .counter {
+            font-size: 1.5rem;
+            color: #1f4b6e;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .cta-btn {
+            background: #ee9a3a;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(31, 75, 110, 0.08);
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: #1f4b6e;
+            color: #ee9a3a;
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        @media (max-width: 500px) {
+            .bedankt-container {
+                padding: 2rem 1rem 1.5rem 1rem;
+            }
+
+            .bedankt-container h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bedankt-container">
+        <h1>Bedankt voor je bericht!</h1>
+        <p>We nemen zo snel mogelijk contact met je op.<br>
+            Je wordt automatisch doorgestuurd naar de homepage.</p>
+        <div class="counter">
+            Je wordt doorgestuurd in <span id="countdown" style="color: #ee9a3a;">5</span> seconden...
+        </div>
+        <a href="index.php" class="cta-btn">Direct terug naar home</a>
+    </div>
+    <script>
+        let seconds = 5;
+        const countdownEl = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(interval);
+                window.location.href = "index.php";
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
