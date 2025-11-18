@@ -221,13 +221,14 @@ body {
 .hamburgerMenu {
     position: fixed;
     top: 0;
-    right: -100%;
-    /* Standaard buiten beeld */
+    right: 0;
+        /* Standaard buiten beeld (moved off-screen with transform) */
     width: 100%;
     max-width: 400px;
     height: 100%;
     background: var(--wit);
-    transition: right 0.3s ease;
+    transform: translateX(100%);
+        transition: transform 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
     padding: 2rem 1.5rem;
@@ -239,8 +240,22 @@ body {
 }
 
 .hamburgerMenu.active {
-    right: 0;
-    /* Schuift in beeld */
+    transform: translateX(0);
+        /* Schuift in beeld zonder layout shifts */
+    }
+    
+    /* Small screens: avoid visible sliver caused by box-shadow/antialiasing at narrow widths */
+    @media (max-width: 420px) {
+        .hamburgerMenu {
+            /* push a little further so any shadow/antialiasing is off-screen */
+            transform: translateX(calc(100% + 6px));
+            box-shadow: none;
+            /* remove right shadow that may create a line */
+        }
+    
+        .hamburgerMenu.active {
+            transform: translateX(0);
+        }
 }
 
 /* Close Button */
@@ -319,6 +334,39 @@ body {
     margin: 2rem 0 1rem 0;
 }
 
+/* Mobile dropdown: hide submenu by default and show when .open */
+.hamburgerMenu .dropdown-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.28s ease, opacity 0.2s ease, padding 0.2s ease;
+}
+
+.hamburgerMenu .dropdown.open>.dropdown-menu {
+    max-height: 400px;
+    /* enough to show submenu items */
+    opacity: 1;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.hamburgerMenu .dropdown-menu li a {
+    padding: 10px 24px;
+    display: block;
+    color: var(--blauw);
+}
+
+.hamburgerMenu .dropdown>a.dropdown-toggle::after {
+    display: none;
+}
+
+.hamburgerMenu .dropdown.open>a.dropdown-toggle::after {
+    display: none;
+}
 .social-buttons a {
     width: 44px;
     height: 44px;
@@ -328,6 +376,10 @@ body {
     background: rgba(31, 75, 110, 0.1);
     border-radius: 50%;
     transition: all 0.3s ease;
+    text-decoration: none;
+        /* remove underline */
+        color: var(--blauw);
+        /* ensure correct icon color for fallback */
 }
 
 .social-buttons a:hover {
@@ -335,11 +387,30 @@ body {
     transform: translateY(-2px);
 }
 
+/* keyboard focus-visible for accessibility */
+.social-buttons a:focus-visible {
+    outline: 3px solid rgba(31, 75, 110, 0.18);
+    outline-offset: 3px;
+}
 .social-buttons a img {
     width: 24px;
     height: 24px;
 }
 
+/* Font Awesome icons in social-buttons */
+.social-buttons a i {
+    font-size: 18px;
+    color: var(--blauw);
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-buttons a:hover i {
+    color: var(--wit);
+}
 /* CTA Button in menu */
 .cta-button {
     background: linear-gradient(135deg, var(--oranje), #f4a853);
@@ -1820,6 +1891,15 @@ hr {
     }
 }
 
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.7rem;
+        align-items: stretch;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+}
 @media (max-width: 700px) {
 
     .review-slide {
@@ -1866,6 +1946,8 @@ hr {
         flex-direction: column;
         gap: 0.7rem;
         align-items: stretch;
+        justify-content: center;
+            margin-bottom: 2rem;
     }
 
     .contact-layout {

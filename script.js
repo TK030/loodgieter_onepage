@@ -187,9 +187,13 @@ window.addEventListener('scroll', () => {
 
 // Mobiel: toggle dropdown
 document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+    // ensure aria attribute exists for accessibility
+    btn.setAttribute('aria-expanded', 'false');
     btn.addEventListener('click', function (e) {
         e.preventDefault();
-        this.parentElement.classList.toggle('open');
+        const parent = this.parentElement;
+        const opened = parent.classList.toggle('open');
+        this.setAttribute('aria-expanded', opened ? 'true' : 'false');
     });
 });
 
